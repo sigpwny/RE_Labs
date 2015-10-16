@@ -33,7 +33,7 @@ int loginProfessor(){
 	int hash;
 	printf("Please enter your netid: ");
 	fgets(netid, sizeof(netid), stdin);
-	printf("\nPlease enter your password ");
+	printf("Please enter your password: ");
 	fgets(password, sizeof(password), stdin);
 	hash = passwordhash(password);
 	if (!strcmp(professor->netid, netid) && professor->passwordhash == hash){
@@ -52,7 +52,7 @@ int loginStudent(){
 	int hash;
 	printf("Please enter your netid: ");
 	fgets(netid, sizeof(netid), stdin);
-	printf("\nPlease enter your password ");
+	printf("Please enter your password: ");
 	fgets(password, sizeof(password), stdin);
 	if (!strcmp(student.netid, netid) && !strcmp(student.password, password)){
 		professor_authd = 0;
@@ -67,6 +67,7 @@ int loginStudent(){
 void logout(){
 	professor_authd = 0;
 	student_authd = 0;
+	printf("Logout complete.\n");
 }
 
 int enterGrades(){
@@ -108,35 +109,41 @@ int main(){
 	strcpy(student.netid, "bdiddy1");
 	strcpy(student.password, "password123456");
 	printf("Welcome to Compass 3G, the next generation course management system\n");
-	int command = 0;
+	char command = '0';
 	while(1){
-		while ((command < 1) || (command > 5)){
+		while ((command < '1') || (command > '6')){
 			printf("What would you like to do today (1-5)?\n"
 					"1: Login as Professor\n"
 					"2: Login as Student\n"
 					"3: Logout\n"
 					"4: Enter in Grades\n"
 					"5: View GPA\n"
+					"6: Quit\n"
 					);
-			scanf("%d", &command);
+			scanf("%c", &command);
+			// eat the newline and any chars after the first input;
+			scanf("%*c");
 		}
 		switch(command){
-		case 1:
+		case '1':
 			loginProfessor();
 			break;
-		case 2: 
+		case '2': 
 			loginStudent();
 			break;
-		case 3:
+		case '3':
 			logout();
 			break;
-		case 4:
+		case '4':
 			enterGrades();
 			break;
-		case 5:
+		case '5':
 			viewGPA();
 			break;
+		case '6':
+			exit(1);
 		}
+		command = '0'; // resets command so it won't infinite loop
 	}
 
 	
