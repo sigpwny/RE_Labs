@@ -120,6 +120,11 @@ int challengeresponse(){
 int loginProfessor(){
 	if (student_authd == 1){
 		printf("Please logout of student account first.\n");
+		return -1;
+	}
+	else if(professor_authd == 1){
+		printf("You are already logged in!\n");
+		return -1;
 	}
 	char netid[10];
 	char password[30];
@@ -151,6 +156,11 @@ int loginProfessor(){
 int loginStudent(){
 	if (professor_authd == 1){
 		printf("Please logout of professor account first.\n");
+		return -1;
+	}
+	else if(student_authd == 1){
+		printf("You are already logged in!\n");
+		return -1;
 	}
 	char netid[10];
 	char password[30];
@@ -181,7 +191,7 @@ int enterGrades(){
 	int grade_points;
 	if(professor_authd == 0){
 		printf("You must be logged in as a professor to change grades!\n");
-		return 0;
+		return -1;
 	}
 	printf("Please enter the credit hours for the course (0-4): ");
 	scanf("%d", &credit_hours);
@@ -196,11 +206,12 @@ int viewGPA(){
 	double GPA;
 	if (student_authd == 0){
 		printf("You must be logged in as a student to view your GPA!\n");	
-		return 0;
+		return -1;
 	}
 	GPA = (double)student.grade_points / (double)student.credit_hours;
 	student.gpa = GPA;
-	printf("Hello %s, you GPA is %.2lf\n", student.name, student.gpa);	
+	printf("Hello %s, you GPA is %.2lf\n", student.name, student.gpa);
+	return 0;	
 }
 
 int main(){
