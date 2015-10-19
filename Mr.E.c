@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <inttypes.h>
+#include <time.h>
 
 typedef struct student_s{
 	char name[30];
@@ -85,6 +86,36 @@ int base64decode (char *in, size_t inLen, unsigned char *out, size_t *outLen) {
     *outLen = len; /* modify to reflect the actual output size */
     return 0;
 }
+
+int fibonacci(int value){
+	if (value <= 1)
+		return value;
+	return fibonacci(value - 1) + fibonacci(value - 2);
+}
+
+int challengeresponse(){
+	srand(time(NULL));
+	int loopcount = random() % 16;
+	int response;
+	int sum = 0;
+	printf("Challenge values: %d ", loopcount);
+	int fibonacciseed[16] = {0}; 
+	int i;
+	for (i = 0; i < loopcount; i++){
+		fibonacciseed[i] = random() %32;
+		printf("%d ", fibonacciseed[i]);
+	}
+	printf("\nPlease enter your response value: ");
+	scanf("%d", &response);
+	for (i = 0; i < loopcount; i++){
+		sum += fibonacci(fibonacciseed[i]);
+	}
+	if (response == sum){
+		return 1;
+	}
+	else return 0;
+}
+
 int loginProfessor(){
 	char netid[10];
 	char password[30];
@@ -98,9 +129,14 @@ int loginProfessor(){
 	base64decode(professor->encryptedpassword, strlen(professor->encryptedpassword), professorpassword, &length);
 	professorpassword[length] = '\0';
 	if (!strcmp(professor->netid, netid) && !strcmp(professorpassword, password)){
-		professor_authd = 1;
-		student_authd = 0;
-		printf("Succcessfully logged in as a professor.\n");
+		if (challengeresponse()){
+			professor_authd = 1;
+			student_authd = 0;
+			printf("Succcessfully logged in as a professor.\n");
+		}
+		else{
+			printf("Failled challenge response\n");	
+		}
 	}
 	else{
 		printf("Incorrect username and/or password\n");
@@ -174,7 +210,6 @@ int main(){
 	printf("Welcome to Compass 3G, the next generation course management system\n");
 	char command = '0';
 	while(1){
-		
 		printf("What would you like to do today (1-6)?\n"
 					"1: Login as Professor\n"
 					"2: Login as Student\n"
