@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-
+#include <stdlib.h>
 typedef struct student_s{
 	char name[30];
 	int credit_hours;
@@ -19,7 +19,7 @@ typedef struct professor_s{
 
 static int professor_authd = 0;
 static int student_authd = 0;
-static professor_t professor= {"test","test1", 1};
+static professor_t* professor;
 static student_t student;
 
 // create a simple hash function for dynamic analysis portion
@@ -36,7 +36,7 @@ int loginProfessor(){
 	printf("\nPlease enter your password ");
 	fgets(password, sizeof(password), stdin);
 	hash = passwordhash(password);
-	if (!strcmp(professor.netid, netid) && !strcmp(professor.passwordhash, hash)){
+	if (!strcmp(professor->netid, netid) && professor->passwordhash == hash){
 		professor_authd = 1;
 		student_authd = 0;
 	}
@@ -97,7 +97,10 @@ int viewGPA(){
 }
 
 int main(){
-
+	professor = malloc(sizeof(professor_t));
+	strcpy(professor->name, "Evan Illuminatti"); 
+	strcpy(professor->netid, "elumni");
+	professor->passwordhash = 123412341;
 	strcpy(student.name,"Ben Bitdiddle");
 	student.credit_hours = 100;
 	student.grade_points = 250;
@@ -107,7 +110,7 @@ int main(){
 	printf("Welcome to Compass 3G, the next generation course management system\n");
 	int command = 0;
 	while(1){
-		while ((command < 1) && (command > 5)){
+		while ((command < 1) || (command > 5)){
 			printf("What would you like to do today (1-5)?\n"
 					"1: Login as Professor\n"
 					"2: Login as Student\n"
