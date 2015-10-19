@@ -128,10 +128,10 @@ int main(){
 			logout();
 			break;
 		case 4:
-			logout();
+			enterGrades();
 			break;
 		case 5:
-			logout();
+			viewGPA();
 			break;
 		}
 	}
