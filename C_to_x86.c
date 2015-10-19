@@ -40,6 +40,12 @@ int main(){
 		stackint = 2*stackint; 
 	}
 	scanf(" %d", &switchvar);
+	if (switchvar > 3){
+		return 0;
+	}
+	if (switchvar < 1){
+		return 0;
+	}
 	function(switchvar);
 	strcpy(structure.string, global_string);
 	structure.integer = stackint;
