@@ -93,6 +93,7 @@ int fibonacci(int value){
 	return fibonacci(value - 1) + fibonacci(value - 2);
 }
 
+// Sums up N(1-16) random fibonacci numbers
 int challengeresponse(){
 	srand(time(NULL));
 	int loopcount = random() % 16;
@@ -117,6 +118,9 @@ int challengeresponse(){
 }
 
 int loginProfessor(){
+	if (student_authd == 1){
+		printf("Please logout of student account first.\n");
+	}
 	char netid[10];
 	char password[30];
 	char professorpassword[30];
@@ -135,7 +139,7 @@ int loginProfessor(){
 			printf("Succcessfully logged in as a professor.\n");
 		}
 		else{
-			printf("Failled challenge response\n");	
+			printf("Failed challenge response\n");	
 		}
 	}
 	else{
@@ -145,6 +149,9 @@ int loginProfessor(){
 }
 
 int loginStudent(){
+	if (professor_authd == 1){
+		printf("Please logout of professor account first.\n");
+	}
 	char netid[10];
 	char password[30];
 	int hash;
@@ -198,12 +205,12 @@ int viewGPA(){
 
 int main(){
 	professor = malloc(sizeof(professor_t));
-	strcpy(professor->name, "Evan Illuminatti"); 
-	strcpy(professor->netid, "elumni");
-	strcpy(professor->encryptedpassword, "ZWNlbWFzdGVycmFjZQ==");
+	strcpy(professor->name, " John Bardeen"); 
+	strcpy(professor->netid, "jbardeen");
+	strcpy(professor->encryptedpassword, "ZWNlbWFzdGVycmFjZQ==");	// base 64 encoded "ecemasterace"
 	strcpy(student.name,"Ben Bitdiddle");
 	student.credit_hours = 100;
-	student.grade_points = 250;
+	student.grade_points = 150;
 	student.gpa = 2.5;
 	strcpy(student.netid, "bdiddy1");
 	strcpy(student.password, "password123456");
