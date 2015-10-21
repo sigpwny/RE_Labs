@@ -205,13 +205,13 @@ int viewGPA(){
 
 int main(){
 	professor = malloc(sizeof(professor_t));
-	strcpy(professor->name, " Hu-dini"); 
-	strcpy(professor->netid, "hu");
+	strcpy(professor->name, " John Bardeen"); 
+	strcpy(professor->netid, "jbardeen");
 	strcpy(professor->encryptedpassword, "ZWNlbWFzdGVycmFjZQ==");	// base 64 encoded "ecemasterace"
 	strcpy(student.name,"Ben Bitdiddle");
 	student.credit_hours = 100;
 	student.grade_points = 150;
-	student.gpa = 2.5;
+	student.gpa = 1.5;
 	strcpy(student.netid, "bdiddy1");
 	strcpy(student.password, "password123456");
 	printf("Welcome to Compass 3G, the next generation course management system\n");

@@ -211,7 +211,7 @@ int main(){
 	strcpy(student.name,"Ben Bitdiddle");
 	student.credit_hours = 100;
 	student.grade_points = 150;
-	student.gpa = 2.5;
+	student.gpa = 1.5;
 	strcpy(student.netid, "bdiddy1");
 	strcpy(student.password, "password123456");
 	printf("Welcome to Compass 3G, the next generation course management system\n");
