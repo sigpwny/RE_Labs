@@ -11,21 +11,27 @@ typedef struct structure_s{
 } structure_t;
 
 
-char* function(int var){
+void function(int var, int stackint){
 	char yes[] = "Yes\n";
 	char no[] = "No\n";
 	char maybe[] = "Maybe\n";
-	
+	structure_t structure;
+
 	switch(var){
 	case 1:
-		return strcpy(global_string, yes);
+		strcpy(global_string, yes);
+		break;
 	case 2: 
-		return strcpy(global_string, no);
+		strcpy(global_string, no);
+		break;
 	case 3:
-		return strcpy(global_string, maybe);
-	default:
-		return NULL;
+		strcpy(global_string, maybe);
+		break;
 	}
+	strcpy(structure.string, global_string);
+	structure.integer = stackint;
+	printf("structure.string: %sstructure.integer: %d\n", structure.string, structure.integer);
+
 }
 
 int main(){
@@ -33,8 +39,7 @@ int main(){
 	int switchvar;
 	int stackint = 1;
 	char stackstring[] = "Pick a number between 1-3 inclusive:";
-	structure_t structure;
-	
+
 	printf("%s\n", stackstring);
 	for (i = 0; i < 10; i++){
 		stackint = 2*stackint; 
@@ -46,9 +51,7 @@ int main(){
 	if (switchvar < 1){
 		return 0;
 	}
-	function(switchvar);
-	strcpy(structure.string, global_string);
-	structure.integer = stackint;
-	printf("structure.string: %sstructure.integer: %d\n", structure.string, structure.integer);
+	
+	function(switchvar, stackint);
 	return 0;
 }
