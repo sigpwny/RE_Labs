@@ -2,7 +2,7 @@
 #include <string.h>
 
 static char var1[37] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-_
+
 void func1(){
 	printf("Invalid CD key!\n");
 }
