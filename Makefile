@@ -1,4 +1,4 @@
-all: C_to_x86 Mr.E CD_Key
+all: C_to_x86 Mr.E CD_Key Comb
 	
 C_to_x86:
 	gcc -m32 -ggdb -o C_to_x86 C_to_x86.c
@@ -8,6 +8,9 @@ CD_Key:
 	
 Mr.E:
 	gcc -m32 -s -o Mr.E Mr.E.c
+	
+Comb:
+	gcc -m32 -ggdb -o combination combination.c -lm
 
 .PHONY: C_to_x86 Mr.E CD_Key
 
