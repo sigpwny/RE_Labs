@@ -1,14 +1,17 @@
-all: C_to_x86 Mr.E
+all: C_to_x86 Mr.E CD_Key
 	
 C_to_x86:
 	gcc -m32 -ggdb -o C_to_x86 C_to_x86.c
 	
+CD_Key:
+	gcc -m32 -ggdb -std=c99 -o CD_Key CD_Key.c
+	
 Mr.E:
 	gcc -m32 -s -o Mr.E Mr.E.c
 
-.PHONY: C_to_x86 Mr.E
+.PHONY: C_to_x86 Mr.E CD_Key
 
 clean:
-	rm C_to_x86 Mr.E
+	rm C_to_x86 Mr.E CD_Key
 
 
