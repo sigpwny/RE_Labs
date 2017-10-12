@@ -1,19 +1,19 @@
 all: C_to_x86 C_to_x86_simple Mr.E CD_Key Comb
 	
 C_to_x86:
-	gcc -m32 -ggdb -o C_to_x86 C_to_x86.c
+	gcc -m32 -o C_to_x86 C_to_x86.c
 
 C_to_x86_simple:
-	gcc -m32 -ggdb -o C_to_x86_simple C_to_x86_simple.c
+	gcc -m32 -o C_to_x86_simple C_to_x86_simple.c
 	
 CD_Key:
-	gcc -m32 -ggdb -std=c99 -o CD_Key CD_Key.c
+	gcc -m32 -std=c99 -o CD_Key CD_Key.c
 	
 Mr.E:
 	gcc -m32 -s -o Mr.E Mr.E.c
 	
 Comb:
-	gcc -m32 -ggdb -o combination combination.c -lm
+	gcc -m32 -o combination combination.c -lm
 
 .PHONY: C_to_x86 C_to_x86_simple Mr.E CD_Key
 
